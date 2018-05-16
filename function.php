@@ -6,7 +6,7 @@ require_once 'config.php';
 function addTable()
 {
     global $pdo;
-    $sql = "CREATE TABLE MyGuests2 (
+    $sql = "CREATE TABLE NewMyGuests (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     phone VARCHAR(50),
@@ -15,18 +15,35 @@ function addTable()
 
     // use exec() because no results are returned
     $pdo->exec($sql);
-    echo "Table MyGuests created successfully" . "<br>";
+    echo "Table NewMyGuests created successfully" . "<br>";
 }
 
 // кнопка на создание таблицы
 function buttonAddTable()
 {
     global $pdo;
-    $q = $pdo->query('SELECT id FROM MyGuests2');
-
+    // проверка на существование таблицы
+    $q = $pdo->query('SELECT id FROM NewMyGuests');
     if($q != true) {
         echo "<br>" . "<a href='add.php'>Добавить новую таблицу</a>" . "<br>";
     }
+}
+
+// форма для выбора таблицы
+function formTable()
+{
+    echo "<form method='POST' action='table.php'>";
+    echo "  <select name='table'>";
+
+    global $pdo;
+    $allTable = $pdo->query('SHOW TABLES');
+    while($result = $allTable->fetch()) {
+        echo "<option value='" . "$result[0]" . "'>" . "$result[0]" . "</option>";
+    }
+
+    echo "  </select>";
+    echo "  <input type='submit' value='Просмотреть информацию' />";
+    echo "</form>";
 }
 
 // список таблиц
