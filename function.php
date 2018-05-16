@@ -2,8 +2,24 @@
 
 require_once 'config.php';
 
-// добавить таблицу
+// создание новой таблицы
 function addTable()
+{
+    global $pdo;
+    $sql = "CREATE TABLE MyGuests2 (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    phone VARCHAR(50),
+    reg_date TIMESTAMP
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8";
+
+    // use exec() because no results are returned
+    $pdo->exec($sql);
+    echo "Table MyGuests created successfully" . "<br>";
+}
+
+// кнопка на создание таблицы
+function buttonAddTable()
 {
     global $pdo;
     $q = $pdo->query('SELECT id FROM MyGuests2');
@@ -24,7 +40,7 @@ function listTable()
     }
 }
 
-// информация о таблицэ
+// информация о таблице
 function tableToDescribe($tableToDescribe)
 {
     global $pdo;
