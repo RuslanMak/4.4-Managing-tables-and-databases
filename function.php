@@ -15,7 +15,7 @@ function addTable()
 
     // use exec() because no results are returned
     $pdo->exec($sql);
-    echo "Table NewMyGuests created successfully" . "<br>";
+    echo "Таблица 'NewMyGuests' была создана успешно!" . "<br>";
 }
 
 // кнопка на создание таблицы
