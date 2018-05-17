@@ -2,11 +2,24 @@
 
 require_once 'config.php';
 
-// создание новой таблицы
-function addTable()
+// создание стандортной таблицы
+addFirstTable();
+
+// ф-ция для создание стандортной таблицы
+function addFirstTable()
 {
     global $pdo;
-    $sql = "CREATE TABLE NewMyGuests (
+    $q = $pdo->query('SELECT id FROM MyGuests');
+    if($q != true) {
+        addTable('MyGuests');
+    }
+}
+
+// создание новой таблицы
+function addTable($nameTable)
+{
+    global $pdo;
+    $sql = "CREATE TABLE $nameTable (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     phone VARCHAR(50),
@@ -15,7 +28,7 @@ function addTable()
 
     // use exec() because no results are returned
     $pdo->exec($sql);
-    echo "Таблица 'NewMyGuests' была создана успешно!" . "<br>";
+    echo "Таблица " . "$nameTable" . " была создана успешно!" . "<br>";
 }
 
 // кнопка на создание таблицы

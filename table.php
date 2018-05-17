@@ -8,9 +8,10 @@ if ($table) {
     echo "<h2>$table</h2>";
     tableToDescribe("$table");
 } else {
-    echo "Для просмотра информации о таблице перейдите на главную страницу и выберете таблицу!!!";
+    header("Location: index.php");
 }
 
+echo "<h4><a href='index.php'>Перейти на главную страницу</a></h4>";
 
 echo "<h1>New CODE</h1>";
 
@@ -51,4 +52,3 @@ foreach ($result as $row) {
     echo '</td>';
 }
 
-echo "<h4><a href='index.php'>Перейти на главную страницу</a></h4>";
