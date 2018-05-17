@@ -53,7 +53,7 @@ function listTable()
     $allTable = $pdo->query('SHOW TABLES');
 
     while($result = $allTable->fetch()) {
-        echo $result[0] . '<br>';
+        echo $result[0] . "<br>";
     }
 }
 
@@ -70,7 +70,7 @@ function tableToDescribe($tableToDescribe)
     //For the sake of this tutorial, I will loop through the result
     //and print out the column names and their types.
     foreach($result as $column){
-        echo $column['Field'] . ' - ' . $column['Type'], '<br>';
+        echo $column['Field'] . ' - ' . $column['Type'], "<br>";
     }
 
     //The result should be an array of arrays,
@@ -80,3 +80,5 @@ function tableToDescribe($tableToDescribe)
 //    echo "<pre>";
     var_dump($result);
 }
+
+
