@@ -5,21 +5,20 @@ require_once 'function.php';
 $table = $_POST['table'];
 
 if ($table) {
-    echo "<h2>$table</h2>";
-    tableToDescribe("$table");
+//    echo "<h2>$table</h2>";
+//    tableToDescribe("$table");
 } else {
     header("Location: index.php");
 }
 
 echo "<h4><a href='index.php'>Перейти на главную страницу</a></h4>";
 
-echo "<h1>New CODE</h1>";
-
 echo '<h3>Таблица - ' . $table . '</h3>';
 $result = $pdo->query ("
 SELECT `COLUMN_NAME`, `COLUMN_TYPE`
 FROM `INFORMATION_SCHEMA`.`COLUMNS` 
 WHERE `TABLE_SCHEMA`='hw4-4'
+/** WHERE `TABLE_SCHEMA`='rmakarov' */
 AND `TABLE_NAME`='$table';");
 $result = $result->fetchAll(PDO::FETCH_ASSOC);
 echo '<table border="1"><tr>';
@@ -34,7 +33,8 @@ foreach ($result as $row) {
         '<a href="fieldRename.php?table=' . $table . '&nameColumn=' . $row['COLUMN_NAME'] . '&typeColumn=text ">TEXT</a>' . ' ' .
         '<br />';
     $oldNameColumn = $row['COLUMN_NAME'];
-    ?>
+
+?>
 
     <html>
     <head>
